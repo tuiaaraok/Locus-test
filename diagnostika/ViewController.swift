@@ -12,11 +12,8 @@ class ViewController: UIViewController {
 
     
     @IBOutlet var oneButton: UIButton!
-    
     @IBOutlet var twoButton: UIButton!
-    
     @IBOutlet var labelOne: UILabel!
-    
     @IBOutlet var labelTwo: UILabel!
     
     // MARK: Private Properities
@@ -28,18 +25,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         updateUI()
         
         oneButton.layer.cornerRadius = oneButton.frame.width / 15
         twoButton.layer.cornerRadius = twoButton.frame.width / 15
     }
 
-
-    
-    
-    
-    
     
    
     @IBAction func buttonPressed() {
@@ -68,39 +60,27 @@ class ViewController: UIViewController {
          guard let label2 = labelTwo else { return  }
         label1.text = currentAnswers[0].text
         label2.text = currentAnswers[1].text
-//        for two in answers1 {
-//            guard let label1 = labelOne else {return}
-//            guard let label2 = labelTwo else { return  }
-//            label1.text = two[0].text
-//            label2.text = two[1].text
-//            guard let oneB = oneButton else {return}
-//            guard let twoB = oneButton else {return}
-//            oneB.setTitle(two[0].text, for: .normal)
-//            twoB.setTitle(two[1].text, for: .normal)
-             title = "Вопрос № \(questionIndex + 1) из \(answers1.count)"
-     //   }
+
+        title = "Вопрос № \(questionIndex + 1) из \(answers1.count)"
+   
     }
    
     private func nextQuestion() {
           questionIndex+=1
-        
            
            if questionIndex < answers1.count {
                updateUI()
            } else {
                performSegue(withIdentifier: "resultSegue", sender: nil)
            }
-           
        }
-       // In a storyboard-based application, you will often want to do a little preparation before navigation
+  
+    
        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
            guard segue.identifier == "resultSegue" else {return}
            let resultVC = segue.destination as! resultViewController
            resultVC.responses = answersChoosen
        }
-       
-    
-    
-    
+
 }
 
